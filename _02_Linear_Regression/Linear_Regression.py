@@ -29,7 +29,7 @@ def lasso(data):
         errors = predictions - y
         gradient = np.dot(x.T, errors)
         theta -= alpha * (gradient + np.sign(theta))
-    return theta
+    return np.sum(theta*data)
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
