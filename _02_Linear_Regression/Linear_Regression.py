@@ -16,7 +16,7 @@ def ridge(data):
     I_p[0,0]=0
     XTx+=0.5*I_p
     XTy=x.T.dot(y)
-    w=np.linalg.slove(XTx,XTy)
+    w=np.linalg.solve(XTx,XTy)
     return w
 def lasso(data):
   #lasso线性回归
