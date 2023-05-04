@@ -2,6 +2,7 @@
 
 import os
 from sklearn.linear_model import Lasso
+from sklearn.linear_model import Ridge
 
 try:
     import numpy as np
@@ -10,10 +11,9 @@ except ImportError as e:
     import numpy as np
 
 def ridge(data):
-    alpha=0.1
-    ridge=Ridge(alpha=alpha,fit_intercept=True,solver='svd')
+    ridge=Ridge(alpha=0.5)
     ridge.fit(x,y)
-    
+    return ridge.coef_,ridge.intercept_
 def lasso(data):
   #lasso线性回归
   lasso_reg=Lasso(alpha=0.1)
