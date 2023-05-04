@@ -11,6 +11,7 @@ except ImportError as e:
     import numpy as np
 
 def ridge(data):
+    x,y=read_data('./data/exp02/')
     ridge=Ridge(alpha=0.5)
     ridge.fit(x,y)
     return ridge.coef_,ridge.intercept_
