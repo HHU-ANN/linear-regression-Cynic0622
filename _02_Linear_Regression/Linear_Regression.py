@@ -19,9 +19,17 @@ def ridge(data):
     w=np.linalg.solve(XTx,XTy)
     return np.sum(w*data)
 def lasso(data):
-  #lasso线性回归
-  lasso_reg=Lasso(alpha=0.1)
-  lasso_reg.fit(x,y)
+    alpha=0.1
+    num_iters=1000
+    x,y=read_data()
+    m, n = x.shape
+    theta = np.zeros(n)
+    for i in range(num_iters):
+        predictions = np.dot(x, theta)
+        errors = predictions - y
+        gradient = np.dot(x.T, errors)
+        theta -= alpha * (gradient + np.sign(theta))
+    return theta
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
