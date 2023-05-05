@@ -2,6 +2,7 @@
 
 import os
 
+
 try:
     import numpy as np
 except ImportError as e:
@@ -9,10 +10,27 @@ except ImportError as e:
     import numpy as np
 
 def ridge(data):
-    pass
-    
+    x,y=read_data()
+    XTx=x.T.dot(x)
+    I_p=np.identity(x.shape[1])
+    I_p[0,0]=0
+    alpha=1
+    XTx+=alpha*I_p
+    XTy=x.T.dot(y)
+    w=np.linalg.solve(XTx,XTy)
+    return np.sum(w*data)
 def lasso(data):
-    pass
+    alpha=1e-12
+    num_iters=300000
+    x,y=read_data()
+    m, n = x.shape
+    theta = np.zeros(n)
+    for i in range(num_iters):
+        predictions = np.dot(x, theta)
+        errors = predictions - y
+        gradient = np.dot(x.T, errors)
+        theta -= alpha * (gradient + np.sign(theta))
+    return np.dot(theta,data)
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
