@@ -19,7 +19,7 @@ def ridge(data):
     w=np.linalg.solve(XTx,XTy)
     return np.sum(w*data)
 def lasso(data):
-    alpha=0.05
+    alpha=0.0000005
     num_iters=100000
     x,y=read_data()
     m, n = x.shape
