@@ -14,7 +14,8 @@ def ridge(data):
     XTx=x.T.dot(x)
     I_p=np.identity(x.shape[1])
     I_p[0,0]=0
-    XTx+=0.05*I_p
+    alpha=1
+    XTx+=alpha*I_p
     XTy=x.T.dot(y)
     w=np.linalg.solve(XTx,XTy)
     return np.sum(w*data)
