@@ -14,13 +14,13 @@ def ridge(data):
     XTx=x.T.dot(x)
     I_p=np.identity(x.shape[1])
     I_p[0,0]=0
-    XTx+=0.5*I_p
+    XTx+=0.05*I_p
     XTy=x.T.dot(y)
     w=np.linalg.solve(XTx,XTy)
     return np.sum(w*data)
 def lasso(data):
     alpha=1e-12
-    num_iters=10000000
+    num_iters=300000
     x,y=read_data()
     m, n = x.shape
     theta = np.zeros(n)
